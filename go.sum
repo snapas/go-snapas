@@ -1,0 +1,4 @@
+code.as/core/api v0.0.0-20180910161400-1dd2503197ed h1:P84cinkWTzfgjc6py4DN7iUvfGp7/mdcaWajE+XAfpg=
+code.as/core/api v0.0.0-20180910161400-1dd2503197ed/go.mod h1:of8giwTdL1tQuGrN4NoXw2njbTbST/M91VjLZcfmkQA=
+github.com/writeas/impart v1.1.1 h1:RyA9+CqbdbDuz53k+nXCWUY+NlEkdyw6+nWanxSBl5o=
+github.com/writeas/impart v1.1.1/go.mod h1:g0MpxdnTOHHrl+Ca/2oMXUHJ0PcRAEWtkCzYCJUXC9Y=
