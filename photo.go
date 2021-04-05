@@ -28,6 +28,7 @@ type (
 	// PhotoParams holds valid values for uploading photos.
 	PhotoParams struct {
 		FileName string
+		Body     string
 	}
 )
 
@@ -42,15 +43,23 @@ func (c *Client) UploadPhoto(sp *PhotoParams) (*Photo, error) {
 
 	body := &bytes.Buffer{}
 	w := multipart.NewWriter(body)
+
+	if sp.Body != "" {
+		err = w.WriteField("body", sp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("write field 'body': %s", err)
+		}
+	}
+
 	part, err := w.CreateFormFile("file", filepath.Base(f.Name()))
 	if err != nil {
 		return nil, fmt.Errorf("create form file: %s", err)
 	}
-
 	_, err = io.Copy(part, f)
 	if err != nil {
 		return nil, fmt.Errorf("copy file: %s", err)
 	}
+
 	err = w.Close()
 	if err != nil {
 		return nil, fmt.Errorf("close writer: %s", err)
