@@ -1,6 +1,6 @@
 # go-snapas
 
-[![godoc](https://godoc.org/github.com/snapas/go-snapas?status.svg)](https://godoc.org/github.com/snapas/go-snapas)
+[![Go Reference](https://pkg.go.dev/badge/github.com/snapas/go-snapas.svg)](https://pkg.go.dev/github.com/snapas/go-snapas)
 
 Official Snap.as Go client library.
 
