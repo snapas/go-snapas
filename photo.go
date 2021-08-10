@@ -29,6 +29,9 @@ type (
 	PhotoParams struct {
 		FileName string
 		Body     string
+
+		// OrgAlias is the alias of the organization to upload to.
+		OrgAlias string
 	}
 )
 
@@ -65,7 +68,11 @@ func (c *Client) UploadPhoto(sp *PhotoParams) (*Photo, error) {
 		return nil, fmt.Errorf("close writer: %s", err)
 	}
 
-	url := fmt.Sprintf("%s%s", c.Config.BaseURL, "/photos/upload")
+	orgBase := ""
+	if sp.OrgAlias != "" {
+		orgBase = "/organizations/" + sp.OrgAlias
+	}
+	url := fmt.Sprintf("%s%s%s", c.Config.BaseURL, orgBase, "/photos/upload")
 	req, err := http.NewRequest("POST", url, body)
 	if err != nil {
 		return nil, fmt.Errorf("create request: %s", err)
