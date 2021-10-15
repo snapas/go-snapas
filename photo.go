@@ -19,6 +19,7 @@ type (
 		ID       string    `json:"id"`
 		Created  time.Time `json:"created"`
 		Body     *string   `json:"body"`
+		AltText  *string   `json:"alt_text"`
 		Filename string    `json:"filename"`
 		Size     int64     `json:"size"`
 		URL      string    `json:"url"`
@@ -29,6 +30,7 @@ type (
 	PhotoParams struct {
 		FileName string
 		Body     string
+		AltText  string
 
 		// OrgAlias is the alias of the organization to upload to.
 		OrgAlias string
@@ -51,6 +53,12 @@ func (c *Client) UploadPhoto(sp *PhotoParams) (*Photo, error) {
 		err = w.WriteField("body", sp.Body)
 		if err != nil {
 			return nil, fmt.Errorf("write field 'body': %s", err)
+		}
+	}
+	if sp.AltText != "" {
+		err = w.WriteField("alt_text", sp.AltText)
+		if err != nil {
+			return nil, fmt.Errorf("write field 'alt_text': %s", err)
 		}
 	}
 
